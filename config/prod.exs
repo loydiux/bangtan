@@ -10,9 +10,13 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :bangtan, BangtanWeb.Endpoint,
-  http: [:inet6, port: System.get_env("PORT") || 4000],
-  url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  http: [:inet6, port: System.get_env("PORT") || 443],
+  secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE"),
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  extra: 'SameSite=None',
+  secure: true,
+  force_ssl: [rewrite_on: [:x_forwarded_proto], host: nil],
+  check_origin: []
 
 # Do not print debug messages in production
 config :logger, level: :info
@@ -68,4 +72,3 @@ config :logger, level: :info
 
 # Finally import the config/prod.secret.exs which should be versioned
 # separately.
-import_config "prod.secret.exs"

@@ -8,7 +8,8 @@
 use Mix.Config
 
 config :bangtan,
-  ecto_repos: [Bangtan.Repo]
+  ecto_repos: [Bangtan.Repo],
+  env: Mix.env()
 
 # Configures the endpoint
 config :bangtan, BangtanWeb.Endpoint,
