@@ -12,7 +12,7 @@ echo "PUSH TO GIGALIXIR"
 git push -f gigalixir HEAD:master
 
 echo "CHECK STATUS APP"
-while true; do if [[ `gigalixir ps -a $DEPLOY_STAGE | grep Healthy | wc -l` == 1 ]]; then break; fi; sleep 2; done
+while true; do if [[ `gigalixir ps -a $DEPLOY_STAGE | grep Unhealthy | wc -l` == 1 ]]; then sleep 2; fi; break; done
 
 echo "DELETE IF THE SSH FOLDER EXIST"
 rm -rf /root/.ssh
