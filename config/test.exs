@@ -18,4 +18,4 @@ config :bangtan, Bangtan.Repo,
   virtual_host: "/",
   port: String.to_integer(System.get_env("POSTGRES_PORT", "5432")),
   pool: Ecto.Adapters.SQL.Sandbox,
-  adapter: Ecto.Adapters.Postgres,
+  adapter: Ecto.Adapters.Postgres
