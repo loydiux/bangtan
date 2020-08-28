@@ -8,8 +8,8 @@ jobs:
     container:
       image: elixir:1.10.2-slim
     services:
-      postgis:
-        image: mdillon/postgis:11
+      postgres:
+        image: postgres:11
         ports:
           - 5432:5432
         env:
@@ -27,5 +27,5 @@ jobs:
          chmod -R 777 script/test.sh
          sh script/test.sh
       env:
-       POSTGRES_HOST: "postgis"
-       POSTGRES_PORT: ${{ job.services.postgis.ports[5432] }}
+       POSTGRES_HOST: "postgres"
+       POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
