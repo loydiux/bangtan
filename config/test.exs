@@ -14,5 +14,8 @@ config :bangtan, Bangtan.Repo,
   username: "postgres",
   password: "postgres",
   database: "bangtan_test",
-  hostname: "localhost",
-  pool: Ecto.Adapters.SQL.Sandbox
+  hostname: System.get_env("POSTGRES_HOST", "localhost"),
+  virtual_host: "/",
+  port: String.to_integer(System.get_env("POSTGRES_PORT", "5432")),
+  pool: Ecto.Adapters.SQL.Sandbox,
+  adapter: Ecto.Adapters.Postgres

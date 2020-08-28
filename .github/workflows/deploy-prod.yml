@@ -1,9 +1,12 @@
-name: CI
+name: Deploy to Prod
 
-on: [pull_request]
+on:
+  push:
+    branches:
+    - master
 
 jobs:
-  ci:
+  deploy:
     runs-on: ubuntu-latest
     container:
       image: elixir:1.10.2-slim
@@ -22,10 +25,20 @@ jobs:
       run: |
         chmod -R 777 script/dependencies.sh
         sh script/dependencies.sh
-    - name: Tests
+    - name: Precheck
       run: |
          chmod -R 777 script/test.sh
          sh script/test.sh
       env:
        POSTGRES_HOST: "postgres"
        POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
+    - name: Deployment
+      env:
+        DEPLOY_STAGE: bangtan
+        GIGALIXIR_EMAIL: ${{ secrets.GIGALIXIR_EMAIL}}
+        GIGALIXIR_PASS: ${{secrets.GIGALIXIR_PASSWORD }}
+        SSH_KEY: ${{ secrets.SSH_KEY}}
+        SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
+      run: |
+        chmod -R 777 script/deploy.sh
+        bash script/deploy.sh
