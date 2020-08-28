@@ -11,8 +11,8 @@ jobs:
     container:
       image: elixir:1.10.2-slim
     services:
-      postgis:
-        image: mdillon/postgis:11
+      postgres:
+        image: postgres:latest
         ports:
           - 5432:5432
         env:
@@ -30,15 +30,15 @@ jobs:
          chmod -R 777 script/test.sh
          sh script/test.sh
       env:
-       POSTGRES_HOST: "postgis"
-       POSTGRES_PORT: ${{ job.services.postgis.ports[5432] }}
+       POSTGRES_HOST: "postgres"
+       POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
     - name: Deployment
       env:
         DEPLOY_STAGE: bangtan
         GIGALIXIR_EMAIL: ${{ secrets.GIGALIXIR_EMAIL}}
         GIGALIXIR_PASS: ${{secrets.GIGALIXIR_PASSWORD }}
         SSH_KEY: ${{ secrets.SSH_KEY}}
-        SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC }}
+        SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
       run: |
         chmod -R 777 script/deploy.sh
         bash script/deploy.sh
