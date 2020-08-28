@@ -1,0 +1,31 @@
+name: CI
+
+on: [pull_request]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    container:
+      image: elixir:1.10.2-slim
+    services:
+      postgis:
+        image: mdillon/postgis:11
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_HOST: "/"
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install Dependencies
+      run: |
+        chmod -R 777 script/dependencies.sh
+        sh script/dependencies.sh
+    - name: Tests
+      run: |
+         chmod -R 777 script/test.sh
+         sh script/test.sh
+      env:
+       POSTGRES_HOST: "postgis"
+       POSTGRES_PORT: ${{ job.services.postgis.ports[5432] }}

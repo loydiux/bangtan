@@ -1,6 +1,6 @@
 <section class="hero is-light">
   <div class="hero-body" align="center" >
-      <h1 class="title is-1" >Bienvenido</h1>
+      <h1 class="title is-1" >Welcome</h1>
       <img src="<%= Routes.static_path(@conn, "/images/bts_logo.png")%>" width="350px" height="350px"/>
          <div class="buttons">
           <a href="<%= Routes.song_path(@conn, :index) %>"><button type="button">Entrar</button></a>
