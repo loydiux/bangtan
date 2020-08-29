@@ -1,13 +1,13 @@
 <div id="new" style="padding-top:100px">
     <div class="card" width="100%">
-            <header align="center">
+        <header align="center">
                  <h1 class="title is-1">Agregar canción</h1>
-             </header>
-            <div class="card-content" >
-                <%= render "form.html", Map.put(assigns, :action, Routes.song_path(@conn, :create)) %>
-             </div>
-            <footer class="card-footer">
-                <span class="card-footer-item"><%= link "Back", to: Routes.song_path(@conn, :index) %></span>
-            </footer>
+        </header>
+        <div class="card-content" >
+            <%= render "form.html", Map.put(assigns, :action, Routes.song_path(@conn, :create)) %>
+        </div>
+        <footer class="card-footer">
+            <span class="card-footer-item"><%= link "Back", to: Routes.song_path(@conn, :index) %></span>
+        </footer>
     </div>
 </div>

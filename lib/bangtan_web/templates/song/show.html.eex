@@ -25,7 +25,7 @@
             </ul>
 
             <%= if @song.mv do %>
-                <a href="<%= @song.mv %>"><%= @song.mv %></a></br>
+                <a href="<%= @song.mv %>" target="_blank"><%= @song.mv %></a></br>
                 <div id="play" align="center">
                 <iframe src="<%= convert_embed(@song.mv)%>"  width="853" height="480"  frameborder="0" allowfullscreen></iframe>
                 </div>
