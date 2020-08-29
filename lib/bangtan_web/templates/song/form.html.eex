@@ -1,0 +1,59 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <div class="columns is-multiline">
+    <div class="column is-half">
+
+      <div class="field">
+      <%= label f, :artist, class: "label" %>
+      <%= text_input f, :artist, class: "input" %>
+      <%= error_tag f, :artist %>
+      </div>
+
+     <div class="field">
+      <%= label f, :album, class: "label" %>
+      <%= text_input f, :album, class: "input" %>
+      <%= error_tag f, :album %>
+      </div>
+
+      <div class="field">
+      <%= label f, :name, class: "label" %>
+      <%= text_input f, :name, class: "input" %>
+      <%= error_tag f, :name %>
+      </div>
+
+      <div class="field">
+      <%= label f, :duration, class: "label" %>
+      <%= text_input f, :duration, step: "any", class: "input" %>
+      <%= error_tag f, :duration %>
+      </div>
+
+      <div class="field">
+      <%= label f, :release_date, class: "label" %>
+      <%= date_input f, :release_date, class: "input" %>
+      <%= error_tag f, :relase_date %>
+      </div>
+
+      <div class="field">
+      <%= label f, :enlace_a_video, class: "label" %>
+      <%= text_input f , :mv, step: "any", class: "input"%>
+      <%= error_tag f, :mv %>
+      </div>
+
+    </div>
+    <div class="column is-12">
+      <div>
+        <div class="field">
+          <div class="control">
+            <%= submit "Save", class: "button is-link" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<% end %>

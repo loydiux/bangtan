@@ -1,6 +1,41 @@
-<section class="hero is-light">
-  <div class="hero-body" align="center" >
-      <h1 class="title is-1" >Lista de Canciones</h1>
+<div id="index" align="center"style="padding-top:100px" >
+  <div class="card" width="100%">
+    <header align="center">
+      <h1 class="title is-1">Lista de Canciones</h1>
+    </header>
+    <div class="card-content">
+        <table class="table is-striped is-hoverable is-fullwidth">
+          <thead>
+            <tr>
+              <th>Arista</th>
+              <th>Album</th>
+              <th>Nombre</th>
+              <th>Fecha estreno</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+        <%= for song <- @songs do %>
+            <tr>
+              <td><%= song.artist %></td>
+              <td><%= song.album %></td>
+              <td><%= song.name %></td>
+              <td><%= song.release_date %></td>
+              <td>
+                <%= link "Ver", to: Routes.song_path(@conn, :show, song) %>
+                &nbsp;
+                <%= link "Editar", to: Routes.song_path(@conn, :edit, song) %>
+                &nbsp;
+                <%= link "Eliminar", to: Routes.song_path(@conn, :delete, song), method: :delete, data: [confirm: "Are you sure?"] %>
+              </td>
+            </tr>
+        <% end %>
+          </tbody>
+        </table>
+    </div>
+    <footer class="card-footer">
+      <span class="card-footer-item"><%= link "Agregar", to: Routes.song_path(@conn, :new) %></span>
+    </footer>
   </div>
-</section>
+</div>
 
