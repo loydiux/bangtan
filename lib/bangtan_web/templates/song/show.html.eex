@@ -1,0 +1,40 @@
+<div id="show" style="padding-top:100px">
+    <div class="card" width="100%">
+        <header align="center">
+            <h1 class="title is-1">Canción: <%= @song.name %> </h1>
+        </header>
+        <div class="card-content">
+            <ul>
+                <li>
+                    <strong>Artista:</strong>
+                        <%= @song.artist %>
+                </li>
+                <li>
+                    <strong>Album:</strong>
+                        <%= @song.album %>
+                </li>
+                <li>
+                    <strong>Duración:</strong>
+                        <%= @song.duration %>
+                </li>
+
+                <li>
+                    <strong>Fecha de Lanzamiento:</strong>
+                        <%= @song.release_date %>
+                </li>
+            </ul>
+
+            <%= if @song.mv do %>
+                <a href="<%= @song.mv %>" target="_blank"><%= @song.mv %></a></br>
+                <div id="play" align="center">
+                <iframe src="<%= convert_embed(@song.mv)%>"  width="853" height="480"  frameborder="0" allowfullscreen></iframe>
+                </div>
+            <% end %>
+        </div>
+        <footer class="card-footer">
+        <span class="card-footer-item"><%= link "Edit", to: Routes.song_path(@conn, :edit, @song) %></span>
+        <span class="card-footer-item"><%= link "Back", to: Routes.song_path(@conn, :index) %></span>
+        </footer>
+    </div>
+</div>
+
