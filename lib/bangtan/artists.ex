@@ -14,7 +14,7 @@ defmodule Bangtan.Artists do
   @spec list_songs :: [Artists.Song.t()]
   def list_songs() do
     Artists.Song
-    |> order_by(asc: :id)
+    |> order_by(asc: :release_date)
     |> Repo.all()
   end
 
