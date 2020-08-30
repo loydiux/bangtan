@@ -11,6 +11,7 @@
               <th>Album</th>
               <th>Nombre</th>
               <th>Duración</th>
+
               <th></th>
             </tr>
           </thead>
