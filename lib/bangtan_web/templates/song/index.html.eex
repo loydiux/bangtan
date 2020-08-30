@@ -10,7 +10,7 @@
               <th>Arista</th>
               <th>Album</th>
               <th>Nombre</th>
-              <th>Fecha estreno</th>
+              <th>Duración</th>
               <th></th>
             </tr>
           </thead>
@@ -20,7 +20,7 @@
               <td><%= song.artist %></td>
               <td><%= song.album %></td>
               <td><%= song.name %></td>
-              <td><%= song.release_date %></td>
+              <td><%= song.duration %></td>
               <td>
                 <%= link "Ver", to: Routes.song_path(@conn, :show, song) %>
                 &nbsp;
