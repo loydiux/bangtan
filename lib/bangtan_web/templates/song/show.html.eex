@@ -20,7 +20,7 @@
 
                 <li>
                     <strong>Fecha de Lanzamiento:</strong>
-                        <%= @song.release_date %>
+                        <%= format_date(@song.release_date)%>
                 </li>
             </ul>
 
